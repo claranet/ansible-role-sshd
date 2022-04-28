@@ -1,0 +1,4 @@
+---
+- name: Debian | Install openssh-server
+  ansible.builtin.apt:
+    name: openssh-server

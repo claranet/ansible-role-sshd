@@ -1,0 +1,37 @@
+---
+sshd_trustedusercakeys_content: ""
+sshd_principals: {}
+sshd_principals_default:
+    # login:
+    #   - principal line 1
+    #   - principal line 2
+    # eg.
+    # git:
+    #  - restrict,command="/usr/libexec/gitolite/gitolite-shell admin" my_cert_principal_1
+    #  - my_cert_principal_2
+    # here user with "my_cert_principal_1" in their certificat will be able to launch "/usr/libexec/gitolite/gitolite-shell admin" as git
+    # and user with "my_cert_principal_2" in their certificat will be able to login (or run whatever they want)
+    admin:
+        - admin
+sshd_principals_list_merge: append
+
+sshd_config_template: sshd_config.j2
+sshd_config_chmod: 0444
+sshd_config: {}
+sshd_config_default: "{{lookup('vars', 'sshd_config_default_' + ansible_distribution_release | lower )}}"
+sshd_config_list_merge: append
+sshd_config_list_separated_by_comma:
+    - AuthenticationMethods
+    - Ciphers
+    - HostbasedAcceptedKeyTypes
+    - KexAlgorithms
+    - MACs
+    - PubkeyAcceptedKeyTypes
+    - CASignatureAlgorithms
+sshd_config_list_separated_by_newline:
+    - HostKey
+    - ListenAddress
+    - Port
+sshd_yes_i_know_what_i_am_doing: false
+
+sshd_config_d_include: false

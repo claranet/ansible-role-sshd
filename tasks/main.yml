@@ -1,0 +1,73 @@
+---
+- name: Gather OS specific variables
+  ansible.builtin.include_vars: "{{ loop_vars }}"
+  loop: "{{ query('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distro }}-{{ ansible_distro_version }}.yml"
+        - "{{ ansible_distro }}-{{ ansible_distro_release }}.yml"
+        - "{{ ansible_distro }}-{{ ansible_distro_major_version }}.yml"
+        - "{{ ansible_distro }}.yml"
+        - "{{ ansible_os_family|lower }}-family.yml"
+        - "{{ ansible_system | lower }}.yml"
+      paths:
+        - "vars"
+      skip: true
+  loop_control:
+    loop_var: loop_vars
+
+- name: Import distribution specific task
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Populate Trusted User Keys Certificat Authority
+  when:
+    - "'TrustedUserCAKeys' in _sshd_config"
+    - sshd_trustedusercakeys_content | length > 0
+  ansible.builtin.copy:
+    content: "{{ sshd_trustedusercakeys_content }}"
+    dest: "{{ _sshd_config.TrustedUserCAKeys }}"
+    owner: root
+    group: root
+    mode: 0444
+  notify: reload openssh service
+
+- name: check AuthorizedPrincipalsFile ends with %u
+  ansible.builtin.fail:
+    msg: >
+      AuthorizedPrincipalsFile doesn't end with /%u
+      if that's ok set sshd_yes_i_know_what_i_am_doing to true
+  when:
+    - "'AuthorizedPrincipalsFile' in _sshd_config"
+    - "not _sshd_config.AuthorizedPrincipalsFile.endswith('/%u')"
+    - "not sshd_yes_i_know_what_i_am_doing"
+
+- name: AuthorizedPrincipalsFile
+  when:
+    - "'AuthorizedPrincipalsFile' in _sshd_config"
+    - "_sshd_config.AuthorizedPrincipalsFile.endswith('/%u')"
+  block:
+    - name: /etc/ssh/auth_principals/
+      ansible.builtin.file:
+        path: "{{ _sshd_config.AuthorizedPrincipalsFile | dirname }}"
+        state: directory
+        mode: 0755
+
+    - name: /etc/ssh/auth_principals/*
+      ansible.builtin.copy:
+        dest: "{{ _sshd_config.AuthorizedPrincipalsFile | dirname }}/{{ item.key }}"
+        content: "{{ '\n'.join(item.value) }}\n"
+        mode: 0444
+      loop: "{{ _sshd_principals|dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
+      notify: reload openssh service
+
+- name: /etc/ssh/sshd_config
+  ansible.builtin.template:
+    src: "{{ sshd_config_template }}"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: "{{ sshd_config_chmod }}"
+  notify: reload openssh service

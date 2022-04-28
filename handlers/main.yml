@@ -1,0 +1,6 @@
+---
+- name: reload openssh service
+  ansible.builtin.service:
+    name: "{{ _sshd_service_name }}"
+    enabled: true
+    state: reloaded

@@ -1,0 +1,40 @@
+# {{ ansible_managed }}
+
+{% if sshd_config_d_include %}
+Include /etc/ssh/sshd_config.d/*.conf
+{% endif %}
+
+{% for k, v in _sshd_config|dictsort if not k[:6] == "Match " -%}
+{% 	if v is not string and v is sequence -%}
+{% 		if k in sshd_config_list_separated_by_comma -%}
+{{k}} {{','.join(v)}}
+{% 		elif k in sshd_config_list_separated_by_newline -%}
+{% 			for list_element in v -%}
+{{k}} {{list_element}}
+{% 			endfor -%}
+{% 		else -%}
+{{k}} {{' '.join(v)}}
+{% 		endif -%}
+{% 	else -%}
+{{k}} {{v}}
+{% 	endif -%}
+{% endfor -%}
+
+{% for match_k, match_v in _sshd_config|dictsort if match_k[:6] == "Match " -%}
+{{match_k}}
+{% 	for k, v in match_v|dictsort -%}
+{% 		if v is not string and v is sequence -%}
+{% 			if k in sshd_config_list_separated_by_comma %}
+  {{k}} {{','.join(v)}}
+{% 			elif k in sshd_config_list_separated_by_newline -%}
+{% 				for list_element in v %}
+  {{k}} {{list_element}}
+{% 				endfor -%}
+{% 			else %}
+  {{k}} {{' '.join(v)}}
+{% 			endif -%}
+{% 		else %}
+  {{k}} {{v}}
+{% 		endif -%}
+{% 	endfor -%}
+{% endfor -%}

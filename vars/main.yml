@@ -1,0 +1,10 @@
+---
+ansible_distro: "{{ ansible_distribution|lower|replace('\"', '') }}"
+ansible_distro_version: "{{ ansible_distribution_version|lower|replace('/', '_') }}"
+ansible_distro_release: "{{ ansible_distribution_release|lower }}"
+ansible_distro_major_version: "{{ ansible_distribution_major_version|lower|replace('/', '_') }}"
+
+_sshd_principals: "{{ sshd_principals_default | combine(sshd_principals, recursive=True, list_merge=sshd_principals_list_merge) }}"
+_sshd_config: "{{ sshd_config_default | combine(sshd_config, recursive=True, list_merge=sshd_config_list_merge) }}"
+
+_sshd_service_name: "{{ (ansible_distro == 'centos') | ternary('sshd', 'ssh') }}"
