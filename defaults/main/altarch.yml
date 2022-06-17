@@ -1,5 +1,5 @@
 ---
-sshd_config_default_altarch:
+sshd_config_default_centos_7:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"

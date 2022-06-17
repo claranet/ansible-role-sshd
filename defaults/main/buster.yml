@@ -1,5 +1,5 @@
 ---
-sshd_config_default_buster:
+sshd_config_default_debian_buster:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"

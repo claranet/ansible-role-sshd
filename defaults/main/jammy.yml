@@ -1,20 +1,17 @@
 ---
-sshd_config_default_debian_stretch:
+sshd_config_default_ubuntu_jammy:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
   PasswordAuthentication: "no"
   StrictModes: "yes"
   PermitEmptyPasswords: "no"
+  CASignatureAlgorithms:
+    - +ssh-rsa
   # to get supported Ciphers: ssh -Q cipher
   Ciphers:
     - aes256-ctr
     - aes128-ctr
-  # to get supported MACs: ssh -Q mac
-  MACs:
-    - hmac-sha2-512
-    - hmac-sha2-256
-    - hmac-ripemd160
   # to get supported KexAlgorithms: ssh -Q kex
   KexAlgorithms:
     - diffie-hellman-group-exchange-sha256
@@ -30,7 +27,6 @@ sshd_config_default_debian_stretch:
     - "/etc/ssh/ssh_host_rsa_key"
     - "/etc/ssh/ssh_host_ecdsa_key"
     - "/etc/ssh/ssh_host_ed25519_key"
-  UsePrivilegeSeparation: "yes"
   SyslogFacility: "AUTH"
   LogLevel: "INFO"
   LoginGraceTime: 600
@@ -45,5 +41,5 @@ sshd_config_default_debian_stretch:
   MaxSessions: 10
   MaxStartups: 10
   ChallengeResponseAuthentication: "no"
-  Subsystem: "sftp    /usr/lib/sftp-server -u 0022"
+  Subsystem: "sftp /usr/lib/openssh/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"

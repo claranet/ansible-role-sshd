@@ -1,5 +1,5 @@
 ---
-sshd_config_default_bullseye:
+sshd_config_default_debian_bullseye:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
