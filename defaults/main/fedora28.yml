@@ -1,13 +1,11 @@
 ---
-"sshd_config_default_fedora_twenty eight":
+sshd_config_default_fedora_twenty_eight:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
   PasswordAuthentication: "no"
   StrictModes: "yes"
   PermitEmptyPasswords: "no"
-  CASignatureAlgorithms:
-    - +ssh-rsa
   # to get supported Ciphers: ssh -Q cipher
   Ciphers:
     - aes256-ctr

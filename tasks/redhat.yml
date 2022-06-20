@@ -1,5 +1,5 @@
 ---
-- name: Centos | Install openssh-server
+- name: Redhat | Install openssh-server
   ansible.builtin.yum:
     name: "{{ packages }}"
   vars:
@@ -7,7 +7,7 @@
       - openssh-server
       - openssh-clients
 
-- name: Centos | Check Host key
+- name: Redhat | Check Host key
   ansible.builtin.stat:
     path: /etc/ssh/{{ item }}
   loop:
@@ -16,7 +16,7 @@
     - /etc/ssh/ssh_host_ed25519_key
   register: centos_host_keys
 
-- name: Centos | ssh-keygen
+- name: Redhat | ssh-keygen
   ansible.builtin.command: /usr/bin/ssh-keygen -A
   args:
     creates: "{{ item }}"

@@ -22,7 +22,7 @@
 
 - name: Populate Trusted User Keys Certificat Authority
   when:
-    - "'TrustedUserCAKeys' in _sshd_config"
+    - "'TrustedUserCAKeys' in _sshd_config | replace(' ', '_')"
     - sshd_trustedusercakeys_content | length > 0
   ansible.builtin.copy:
     content: "{{ sshd_trustedusercakeys_content }}"
