@@ -16,7 +16,7 @@
     - /etc/ssh/ssh_host_ed25519_key
   register: centos_host_keys
 
-- name: Centos | ssh-keygen
+- name: Centos | ssh-keygen
   ansible.builtin.command: /usr/bin/ssh-keygen -A
   args:
     creates: "{{ item }}"
