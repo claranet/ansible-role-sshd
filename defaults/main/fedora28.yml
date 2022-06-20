@@ -1,5 +1,5 @@
 ---
-sshd_config_default_centos_core:
+sshd_config_default_fedora_twenty_eight:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
