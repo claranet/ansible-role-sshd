@@ -35,3 +35,9 @@ sshd_config_list_separated_by_newline:
 sshd_yes_i_know_what_i_am_doing: false
 
 sshd_config_d_include: false
+
+sshd_banner_template: https://raw.githubusercontent.com/claranet/motd/master/banner
+sshd_banner_template_prepend: ""
+sshd_banner_template_append: ""
+sshd_banner_template_username: ""
+sshd_banner_template_password: ""
