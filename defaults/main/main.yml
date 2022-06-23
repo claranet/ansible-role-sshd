@@ -35,3 +35,13 @@ sshd_config_list_separated_by_newline:
 sshd_yes_i_know_what_i_am_doing: false
 
 sshd_config_d_include: false
+
+ssh_banner_disable_default_motd: true
+ssh_banner_template: https://raw.githubusercontent.com/claranet/motd/master/banner
+ssh_banner_template_script: https://raw.githubusercontent.com/claranet/motd/master/scripts/00-basic
+ssh_banner_template_prepend: ""
+ssh_banner_template_append: ""
+ssh_template_username: ""
+ssh_template_password: ""
+ssh_banner_template_username: "{{ ssh_template_username }}"
+ssh_banner_template_password: "{{ ssh_template_password }}"

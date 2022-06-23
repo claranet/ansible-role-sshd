@@ -41,3 +41,4 @@ sshd_config_default_debian_buster:
   ChallengeResponseAuthentication: "no"
   Subsystem: "sftp    /usr/lib/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"

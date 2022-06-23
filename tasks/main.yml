@@ -71,3 +71,6 @@
     group: root
     mode: "{{ sshd_config_chmod }}"
   notify: reload openssh service
+
+- name: configure_banner
+  ansible.builtin.include_tasks: "configure_banner.yml"

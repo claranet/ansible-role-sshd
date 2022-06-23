@@ -6,3 +6,9 @@ ansible_distro_major_version: "{{ ansible_distribution_major_version|lower|repla
 
 _sshd_principals: "{{ sshd_principals_default | combine(sshd_principals, recursive=True, list_merge=sshd_principals_list_merge) }}"
 _sshd_config: "{{ sshd_config_default | combine(sshd_config, recursive=True, list_merge=sshd_config_list_merge) }}"
+
+_ssh_banner_file_path: /etc/banner
+_ssh_banner_state: "{{ 'present' if ssh_banner_template else 'absent' }}"
+_ssh_banner_lookup_method: "{{ 'url' if ssh_banner_template is match('http(s)?:\/\/') else 'template' }}"
+_ssh_banner_template_content: "{{ lookup(_ssh_banner_lookup_method, ssh_banner_template, split_lines=False, username=ssh_banner_template_username, password=ssh_banner_template_password) }}"
+_sshd_config_file_path: /etc/ssh/sshd_config

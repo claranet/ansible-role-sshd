@@ -1,0 +1,9 @@
+---
+- name: configure_banner | Apply template {{ ssh_banner_template }} on {{ _ssh_banner_file_path }}
+  copy:
+    content: "{{ ssh_banner_template_prepend + _ssh_banner_template_content + ssh_banner_template_append }}"
+    dest: "{{ _ssh_banner_file_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: ssh_banner_template != None and ssh_banner_template|length>0
