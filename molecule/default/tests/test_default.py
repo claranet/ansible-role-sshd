@@ -15,7 +15,7 @@ def test_pkg(host):
 
 
 def test_svc(host):
-    if host.system_info.distribution == 'debian':
+    if host.system_info.distribution in ['debian', 'ubuntu']:
       svc = host.service("ssh")
     else:
       svc = host.service("sshd")

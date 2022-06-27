@@ -1,0 +1,4 @@
+---
+- name: Ubuntu | Install openssh-server
+  ansible.builtin.apt:
+    name: openssh-server
