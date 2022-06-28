@@ -9,7 +9,7 @@
 
 > :star: Star us on GitHub — it motivates us a lot!
 
-Install and configure SSH.
+Install and configure SSHd. Manages Certificate Authority
 
 ## :warning: Requirements
 
@@ -25,7 +25,7 @@ ansible-galaxy install claranet.sshd
 
 Variable | Default value | Description
 ---------|---------------|------------
-sshd_trustedusercakeys_content        | **empty**                                                               | Content of the Trusted User Keys Certificat Authority
+sshd_trustedusercakeys_content        | **empty**                                                               | Content of the Trusted User Keys Certificate Authority
 sshd_principals                       | **{}**                                                                  | Content of [AuthorizedPrincipalsFile](https://man.openbsd.org/sshd_config#AuthorizedPrincipalsFile)
 sshd_principals_list_merge            | **append**                                                              | How `sshd_principals` and `sshd_principals_default` are combined.
 sshd_config_template                  | **sshd_config.j2**                                                      | Default template name for /etc/ssh/sshd_config
