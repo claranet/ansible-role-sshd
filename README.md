@@ -41,6 +41,7 @@ sshd_banner_template_prepend          | **empty**                               
 sshd_banner_template_append           | See [defaults/main.yml](defaults/main.yml)                              | Append raw content to `sshd_banner_template`
 sshd_banner_template_username         | **empty**                                                               | Used when `sshd_banner_template` is an URL
 sshd_banner_template_password         | **empty**                                                               | Used when `sshd_banner_template` is an URL
+
 ## :arrows_counterclockwise: Dependencies
 
 N/A
