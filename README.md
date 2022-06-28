@@ -25,22 +25,22 @@ ansible-galaxy install claranet.sshd
 
 Variable | Default value | Description
 ---------|---------------|------------
-sshd_trustedusercakeys_content     | **empty**      | Content of the Trusted User Keys Certificat Authority
-sshd_principals    | **{}**      | Content of [AuthorizedPrincipalsFile](https://man.openbsd.org/sshd_config#AuthorizedPrincipalsFile)
-sshd_principals_list_merge    | **append**      | How `sshd_principals` and `sshd_principals_default` are combined.
-sshd_config_template    | **sshd_config.j2**      | Default template name for /etc/ssh/sshd_config
-sshd_config_chmod   | **444**      | Default mode for /etc/ssh/sshd_config
-sshd_config   | **{}**      | ssh config options
-sshd_config_list_merge    | **append**      | How `sshd_config` and `sshd_default_default` are combined.
-sshd_config_list_separated_by_comma    | **[]**      | sshd_config options separated by coma
-sshd_config_list_separated_by_newline    | **[]**      | sshd_config options multi line splited
-sshd_yes_i_know_what_i_am_doing    | **false**      | by-pass check AuthorizedPrincipalsFile ends
-sshd_config_d_include    | **false**      | Enable "Include config.d/*"
-sshd_banner_template   |   https://raw.githubusercontent.com/claranet/motd/master/banner    |   URL to ssh banner
-sshd_banner_template_prepend   |   **empty**   |   Template before banner
-sshd_banner_template_append   |   **empty**    |   Template after banner
-sshd_banner_template_username   |   **empty**    |   Username for HTTP access
-sshd_banner_template_password   |   **empty**    |   Password for HTTP access
+sshd_trustedusercakeys_content        | **empty**                                                               | Content of the Trusted User Keys Certificat Authority
+sshd_principals                       | **{}**                                                                  | Content of [AuthorizedPrincipalsFile](https://man.openbsd.org/sshd_config#AuthorizedPrincipalsFile)
+sshd_principals_list_merge            | **append**                                                              | How `sshd_principals` and `sshd_principals_default` are combined.
+sshd_config_template                  | **sshd_config.j2**                                                      | Default template name for /etc/ssh/sshd_config
+sshd_config_chmod                     | **444**                                                                 | Default mode for /etc/ssh/sshd_config
+sshd_config                           | **{}**                                                                  | ssh config options
+sshd_config_list_merge                | **append**                                                              | How `sshd_config` and `sshd_default_default` are combined.
+sshd_config_list_separated_by_comma   | **[]**                                                                  | sshd_config options separated by coma
+sshd_config_list_separated_by_newline | **[]**                                                                  | sshd_config options multi line splited
+sshd_yes_i_know_what_i_am_doing       | **false**                                                               | by-pass check AuthorizedPrincipalsFile ends
+sshd_config_d_include                 | **false**                                                               | Enable "Include config.d/*"
+sshd_banner_template                  | https://raw.githubusercontent.com/claranet/motd/master/scripts/00-basic | Dynmaic MOTD template<br>Can be a URL or a local template
+sshd_banner_template_prepend          | **empty**                                                               | Prepend raw content to `sshd_banner_template`
+sshd_banner_template_append           | See [defaults/main.yml](defaults/main.yml)                              | Append raw content to `sshd_banner_template`
+sshd_banner_template_username         | **empty**                                                               | Used when `sshd_banner_template` is an URL
+sshd_banner_template_password         | **empty**                                                               | Used when `sshd_banner_template` is an URL
 ## :arrows_counterclockwise: Dependencies
 
 N/A
