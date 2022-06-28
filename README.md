@@ -23,8 +23,8 @@ ansible-galaxy install claranet.sshd
 
 ## :gear: Role variables
 
-Variable | Default value | Description
----------|---------------|------------
+Variable                              | Default value                                                           | Description
+--------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------
 sshd_trustedusercakeys_content        | **empty**                                                               | Content of the Trusted User Keys Certificate Authority
 sshd_principals                       | **{}**                                                                  | Content of [AuthorizedPrincipalsFile](https://man.openbsd.org/sshd_config#AuthorizedPrincipalsFile)
 sshd_principals_list_merge            | **append**                                                              | How `sshd_principals` and `sshd_principals_default` are combined.
@@ -36,7 +36,7 @@ sshd_config_list_separated_by_comma   | **[]**                                  
 sshd_config_list_separated_by_newline | **[]**                                                                  | sshd_config options multi line splited
 sshd_yes_i_know_what_i_am_doing       | **false**                                                               | by-pass check AuthorizedPrincipalsFile ends
 sshd_config_d_include                 | **false**                                                               | Enable "Include config.d/*"
-sshd_banner_template                  | https://raw.githubusercontent.com/claranet/motd/master/scripts/00-basic | Dynmaic MOTD template<br>Can be a URL or a local template
+sshd_banner_template                  | https://raw.githubusercontent.com/claranet/motd/master/banner           | SSH banner template<br>Can be a URL, a local template or `null`
 sshd_banner_template_prepend          | **empty**                                                               | Prepend raw content to `sshd_banner_template`
 sshd_banner_template_append           | See [defaults/main/main.yml](defaults/main/main.yml)                    | Append raw content to `sshd_banner_template`
 sshd_banner_template_username         | **empty**                                                               | Used when `sshd_banner_template` is an URL
