@@ -38,7 +38,7 @@ sshd_yes_i_know_what_i_am_doing       | **false**                               
 sshd_config_d_include                 | **false**                                                               | Enable "Include config.d/*"
 sshd_banner_template                  | https://raw.githubusercontent.com/claranet/motd/master/scripts/00-basic | Dynmaic MOTD template<br>Can be a URL or a local template
 sshd_banner_template_prepend          | **empty**                                                               | Prepend raw content to `sshd_banner_template`
-sshd_banner_template_append           | See [defaults/main.yml](defaults/main.yml)                              | Append raw content to `sshd_banner_template`
+sshd_banner_template_append           | See [defaults/main/main.yml](defaults/main/main.yml)                    | Append raw content to `sshd_banner_template`
 sshd_banner_template_username         | **empty**                                                               | Used when `sshd_banner_template` is an URL
 sshd_banner_template_password         | **empty**                                                               | Used when `sshd_banner_template` is an URL
 
