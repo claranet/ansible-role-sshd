@@ -41,3 +41,4 @@ sshd_config_default_fedora_twenty_eight:
   ChallengeResponseAuthentication: "no"
   Subsystem: "sftp /usr/lib/openssh/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"

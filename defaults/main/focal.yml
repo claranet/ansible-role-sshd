@@ -42,3 +42,4 @@ sshd_config_default_ubuntu_focal:
   ChallengeResponseAuthentication: "no"
   Subsystem: "sftp /usr/lib/openssh/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"

@@ -36,7 +36,11 @@ sshd_config_list_separated_by_comma    | **[]**      | sshd_config options separ
 sshd_config_list_separated_by_newline    | **[]**      | sshd_config options multi line splited
 sshd_yes_i_know_what_i_am_doing    | **false**      | by-pass check AuthorizedPrincipalsFile ends
 sshd_config_d_include    | **false**      | Enable "Include config.d/*"
-
+sshd_banner_template   |   https://raw.githubusercontent.com/claranet/motd/master/banner    |   URL to ssh banner
+sshd_banner_template_prepend   |   **empty**   |   Template before banner
+sshd_banner_template_append   |   **empty**    |   Template after banner
+sshd_banner_template_username   |   **empty**    |   Username for HTTP access
+sshd_banner_template_password   |   **empty**    |   Password for HTTP access
 ## :arrows_counterclockwise: Dependencies
 
 N/A

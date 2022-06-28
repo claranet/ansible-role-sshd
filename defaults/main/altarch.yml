@@ -1,5 +1,5 @@
 ---
-sshd_config_default_centos_7:
+sshd_config_default_centos_core:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
@@ -41,3 +41,4 @@ sshd_config_default_centos_7:
   ChallengeResponseAuthentication: "no"
   Subsystem: "sftp    /usr/lib/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"

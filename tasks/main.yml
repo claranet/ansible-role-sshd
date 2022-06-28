@@ -66,8 +66,17 @@
 - name: /etc/ssh/sshd_config
   ansible.builtin.template:
     src: "{{ sshd_config_template }}"
-    dest: /etc/ssh/sshd_config
+    dest: "{{ _sshd_config_file_path }}"
     owner: root
     group: root
     mode: "{{ sshd_config_chmod }}"
   notify: reload openssh service
+
+- name: Apply template {{ sshd_banner_template }} on {{ _sshd_banner_file_path }}
+  copy:
+    content: "{{ sshd_banner_template_prepend + _sshd_banner_template_content + sshd_banner_template_append }}"
+    dest: "{{ _sshd_banner_file_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: sshd_banner_template != None and sshd_banner_template|length>0

@@ -40,3 +40,4 @@ sshd_config_default_amazon_na:
   ChallengeResponseAuthentication: "no"
   Subsystem: "sftp /usr/lib/openssh/sftp-server -u 0022"
   AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"
