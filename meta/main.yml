@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: "sshd"
   namespace: "claranet"
-  description: "Install and configure SSH. Integrate GetMyKeys"
+  description: "Install and configure SSHd. Manages Certificat Authority"
   author: "Claranet"
   company: "Claranet France"
 
