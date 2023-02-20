@@ -18,7 +18,7 @@ sshd_principals_list_merge: append
 sshd_config_template: sshd_config.j2
 sshd_config_chmod: 0444
 sshd_config: {}
-sshd_config_default: "{{lookup('vars', 'sshd_config_default_' + ansible_distribution | lower + '_' + ansible_distribution_release | lower | replace (' ', '_'))}}"
+sshd_config_default: "{{ lookup('vars', 'sshd_config_default_' + ansible_distribution | lower + '_' + ansible_distribution_release | lower | replace(' ', '_')) }}"
 sshd_config_list_merge: append
 sshd_config_list_separated_by_comma:
     - AuthenticationMethods

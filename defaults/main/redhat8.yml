@@ -1,5 +1,5 @@
 ---
-sshd_config_default_fedora_twenty_eight:
+sshd_config_default_redhat_ootpa:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"

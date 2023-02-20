@@ -9,7 +9,7 @@
         - "{{ ansible_distro }}-{{ ansible_distro_release }}.yml"
         - "{{ ansible_distro }}-{{ ansible_distro_major_version }}.yml"
         - "{{ ansible_distro }}.yml"
-        - "{{ ansible_os_family|lower }}-family.yml"
+        - "{{ ansible_os_family | lower }}-family.yml"
         - "{{ ansible_system | lower }}.yml"
       paths:
         - "vars"
@@ -24,15 +24,15 @@
   when:
     - "'TrustedUserCAKeys' in _sshd_config"
     - sshd_trustedusercakeys_content | length > 0
-  ansible.builtin.copy:
-    content: "{{ sshd_trustedusercakeys_content }}"
+  ansible.builtin.template:
+    src: "trusted_ca_key.j2"
     dest: "{{ _sshd_config.TrustedUserCAKeys }}"
     owner: root
     group: root
     mode: 0444
-  notify: reload openssh service
+  notify: Reload openssh service
 
-- name: check AuthorizedPrincipalsFile ends with %u
+- name: Check AuthorizedPrincipalsFile ends with %u
   ansible.builtin.fail:
     msg: >
       AuthorizedPrincipalsFile doesn't end with /%u
@@ -58,10 +58,10 @@
         dest: "{{ _sshd_config.AuthorizedPrincipalsFile | dirname }}/{{ item.key }}"
         content: "{{ '\n'.join(item.value) }}\n"
         mode: 0444
-      loop: "{{ _sshd_principals|dict2items }}"
+      loop: "{{ _sshd_principals | dict2items }}"
       loop_control:
         label: "{{ item.key }}"
-      notify: reload openssh service
+      notify: Reload openssh service
 
 - name: /etc/ssh/sshd_config
   ansible.builtin.template:
@@ -70,10 +70,10 @@
     owner: root
     group: root
     mode: "{{ sshd_config_chmod }}"
-  notify: reload openssh service
+  notify: Reload openssh service
 
-- name: Apply template {{ sshd_banner_template }} on {{ _sshd_banner_file_path }}
-  copy:
+- name: Apply template {{ sshd_banner_template }}
+  ansible.builtin.copy:
     content: "{{ sshd_banner_template_prepend + _sshd_banner_template_content + sshd_banner_template_append }}"
     dest: "{{ _sshd_banner_file_path }}"
     owner: root
