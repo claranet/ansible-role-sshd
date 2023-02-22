@@ -1,0 +1,44 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+    - name: "Install openssh"
+      ansible.builtin.package:
+        name: "{{ 'openssh-client' if ansible_os_family | lower == 'debian' else 'openssh-clients' }}"
+
+    - name: "Create ssh-key directory"
+      ansible.builtin.file:
+        path: ~/.ssh/claranet
+        state: directory
+
+    - name: "Generate ssh_keys"
+      community.crypto.openssh_keypair:
+        path: ~/.ssh/claranet/{{ item }}
+      loop:
+        - user_ca
+        - user_key
+      register: _sshd_keys
+
+    - name: "Sign user key"
+      ansible.builtin.shell:
+        cmd: "ssh-keygen -s ~/.ssh/claranet/user_ca -I admin@{{ inventory_hostname  }} -n admin -V +1d ~/.ssh/claranet/user_key.pub"
+      tags:
+        - molecule-idempotence-notest
+
+    - name: "Create user"
+      ansible.builtin.user:
+        name: admin
+        state: present
+        create_home: true
+
+  vars:
+    sshd_trustedusercakeys_content: "{{ _sshd_keys.results[0].public_key }}"
+    sshd_config:
+      TrustedUserCAKeys: /etc/ssh/trusted-claranet-ca.pub
+    sshd_principals_default:
+      admin:
+        - admin
+
+  roles:
+    - role: claranet.sshd
