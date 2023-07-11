@@ -63,6 +63,8 @@ jobs:
           - image: "debian"
             tag: "11"
           - image: "debian"
+            tag: "12"
+          - image: "debian"
             tag: "10"
           - image: "ubuntu"
             tag: "22.04"
