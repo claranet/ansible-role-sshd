@@ -12,4 +12,4 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 def test_ssh_config_key_absent(host):
     sshd_config = host.file(f"/etc/ssh/sshd_config")
     assert sshd_config.exists
-    assert sshd_config.contains("PermitRootLogin")
+    assert not sshd_config.contains("PermitRootLogin")
