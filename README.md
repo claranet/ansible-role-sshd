@@ -61,6 +61,26 @@ N/A
     - claranet.sshd
 ```
 
+### Customize SSHd configuration
+
+```yaml
+sshd_config:
+  HostKeyAlgorithms:
+    - ssh-dss
+    - ssh-rsa
+```
+
+Will be rendered as `HostKeyAlgorithms ssh-dss,ssh-rsa` in the config file.
+
+### Delete a key from default configuration
+
+To delete a key from the default config, you can set the value as `null`.
+
+```yaml
+sshd_config:
+  CASignatureAlgorithm: null
+```
+
 ## :closed_lock_with_key: [Hardening](HARDENING.md)
 
 ## :heart_eyes_cat: [Contributing](CONTRIBUTING.md)
