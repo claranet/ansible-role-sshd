@@ -28,10 +28,12 @@ sshd_config_list_separated_by_comma:
     - MACs
     - PubkeyAcceptedKeyTypes
     - CASignatureAlgorithms
+    - HostKeyAlgorithms
 sshd_config_list_separated_by_newline:
     - HostKey
     - ListenAddress
     - Port
+    - AcceptEnv
 sshd_yes_i_know_what_i_am_doing: false
 
 sshd_config_d_include: false
