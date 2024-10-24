@@ -1,5 +1,5 @@
 ---
-sshd_config_default_redhat_ootpa:
+sshd_config_default_redhat_plow:
   Protocol: 2
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
