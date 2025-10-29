@@ -1,0 +1,46 @@
+---
+sshd_config_default_debian_trixie:
+  Protocol: 2
+  PermitRootLogin: "no"
+  PubkeyAuthentication: "yes"
+  PasswordAuthentication: "no"
+  StrictModes: "yes"
+  PermitEmptyPasswords: "no"
+  CASignatureAlgorithms:
+    - +ssh-rsa
+  # to get supported Ciphers: ssh -Q cipher
+  Ciphers:
+    - aes256-ctr
+    - aes128-ctr
+  # to get supported KexAlgorithms: ssh -Q kex
+  KexAlgorithms:
+    - diffie-hellman-group-exchange-sha256
+    - diffie-hellman-group14-sha1
+    - diffie-hellman-group-exchange-sha1
+  UsePAM: "yes"
+  GSSAPIAuthentication: "no"
+  PermitUserEnvironment: "no"
+  AuthorizedPrincipalsFile: "/etc/ssh/auth_principals/%u"
+  Port: 22
+  HostKey:
+    - "/etc/ssh/ssh_host_dsa_key"
+    - "/etc/ssh/ssh_host_rsa_key"
+    - "/etc/ssh/ssh_host_ecdsa_key"
+    - "/etc/ssh/ssh_host_ed25519_key"
+  SyslogFacility: "AUTH"
+  LogLevel: "INFO"
+  LoginGraceTime: 600
+  IgnoreRhosts: "yes"
+  HostbasedAuthentication: "no"
+  UseDNS: "no"
+  X11Forwarding: "no"
+  X11DisplayOffset: 10
+  PrintMotd: "no"
+  PrintLastLog: "yes"
+  TCPKeepAlive: "yes"
+  MaxSessions: 10
+  MaxStartups: 10
+  ChallengeResponseAuthentication: "no"
+  Subsystem: "sftp /usr/lib/openssh/sftp-server -u 0022"
+  AcceptEnv: "SSH_USER"
+  Banner: "/etc/banner"
