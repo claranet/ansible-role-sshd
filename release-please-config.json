@@ -5,6 +5,7 @@
       "release-type": "simple",
       "package-name": "ansible-role-sshd",
       "include-v-in-tag": false,
+      "include-component-in-tag": false,
       "changelog-path": "CHANGELOG.md",
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
