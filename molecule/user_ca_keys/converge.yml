@@ -5,7 +5,7 @@
   pre_tasks:
     - name: "Install openssh"
       ansible.builtin.package:
-        name: "{{ 'openssh-client' if ansible_os_family | lower == 'debian' else 'openssh-clients' }}"
+        name: "{{ 'openssh-client' if ansible_facts.os_family | lower == 'debian' else 'openssh-clients' }}"
 
     - name: "Create ssh-key directory"
       ansible.builtin.file:
